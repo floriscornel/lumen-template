@@ -1,0 +1,15 @@
+.env
+.phpunit.result.cache
+*.md
+/.idea
+/.vscode
+/vendor
+docker-compose.yml
+Dockerfile*
+Homestead.json
+Homestead.yaml
+storage/logs/*
+storage/clockwork/*
+storage/app/*
+storage/framework/cache/*
+storage/frameworkview//*

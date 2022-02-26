@@ -1,0 +1,72 @@
+version: "3"
+
+volumes:
+  redis:
+  postgres:
+  meilisearch:
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - '5501:80'
+
+  php-fpm:
+    build:
+      context: .
+      dockerfile: Dockerfile-fpm
+    user: "1000:1000"
+    volumes:
+      - ./:/app
+      - ./dev/docker-php-ext-opcache.ini:/usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+    environment:
+      APP_NAME: Lumen
+      APP_ENV: local
+      APP_KEY: 
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:5501
+      APP_TIMEZONE: UTC
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: lumen-db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      SCOUT_DRIVER: meilisearch
+      SCOUT_PREFIX: 
+      MEILISEARCH_HOST: http://meilisearch:7700
+      MEILISEARCH_KEY: meili_secret_key
+      CACHE_DRIVER: file
+      QUEUE_CONNECTION: sync
+
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    environment:
+      MEILI_ENV: development
+      MEILI_DB_PATH: /store/data.ms
+      MEILI_HTTP_ADDR: 0.0.0.0:7700
+      MEILI_MASTER_KEY: meili_secret_key
+    volumes: 
+      - meilisearch:/store
+    ports:
+      - '5502:7700'
+
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: lumen-db
+    volumes: 
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '5503:5432'
+
+  redis:
+    image: 'redis:alpine'
+    volumes:
+      - redis:/data
+    ports:
+      - '5504:6379'

@@ -1,0 +1,17 @@
+FROM php:fpm-alpine
+
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions
+RUN install-php-extensions @composer pgsql pdo_pgsql redis opcache curl zip
+
+USER www-data
+ENV APP_HOME /app
+WORKDIR ${APP_HOME}
+
+COPY --chown=www-data:www-data composer.json .
+COPY --chown=www-data:www-data composer.lock .
+RUN composer install --no-interaction --no-dev --optimize-autoloader
+
+COPY --chown=www-data:www-data . .
+
+ENTRYPOINT php-fpm 

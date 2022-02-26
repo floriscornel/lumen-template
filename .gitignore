@@ -1,0 +1,8 @@
+.env
+.phpunit.result.cache
+/.idea
+/.vscode
+/vendor
+docker-compose.ignore.yml
+Homestead.json
+Homestead.yaml
