@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             }
 
             $token = new PersonalAccessToken([
-                'token' => md5($user->email), 
-                'user_id' => $user->id, 
+                'token'   => md5($user->email),
+                'user_id' => $user->id,
             ]);
             $token->save();
 

@@ -1,6 +1,5 @@
 <?php declare(strict_types=1);
 
-use App\Http\Controllers\TemplateController;
 use App\Models\User;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
@@ -20,12 +19,9 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-
 $router->group(['prefix' => 'v1'], function () use ($router) {
-
     // Authenticated routes
     $router->group(['middleware' => 'auth'], function () use ($router) {
-
         $router->get('users', function () {
             return User::search()->get();
         });
@@ -35,6 +31,5 @@ $router->group(['prefix' => 'v1'], function () use ($router) {
         $router->get('templates/{id}', ['uses' => 'TemplateController@show']);
         $router->put('templates/{id}', ['uses' => 'TemplateController@update']);
         $router->delete('templates/{id}', ['uses' => 'TemplateController@destroy']);
-        
     });
 });

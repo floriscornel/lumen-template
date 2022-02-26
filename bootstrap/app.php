@@ -1,7 +1,5 @@
 <?php declare(strict_types=1);
 
-use Illuminate\Support\Facades\Log;
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(

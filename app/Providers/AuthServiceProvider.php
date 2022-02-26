@@ -31,8 +31,6 @@ class AuthServiceProvider extends ServiceProvider
         // the User instance via an API token or any other method necessary.
 
         Gate::policy(App\Models\Template::class, App\Policies\TemplatePolicy::class);
-        // Gate::policy('App\Models\Template', 'App\Policies\TemplatePolicy');
-
 
         $this->app['auth']->viaRequest('api', function ($request) {
             $tokenParts = explode('|', request()->bearerToken() ?? $request->input('api_token') ?? '');

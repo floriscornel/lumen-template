@@ -22,7 +22,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->uuid(),
+            'id'    => $this->faker->uuid(),
             'email' => $this->faker->email(),
         ];
     }

@@ -22,8 +22,8 @@ class TemplateFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->uuid(),
-            'title' => $this->faker->sentence(4, true),
+            'id'      => $this->faker->uuid(),
+            'title'   => $this->faker->sentence(4, true),
             'content' => $this->faker->text(300),
         ];
     }

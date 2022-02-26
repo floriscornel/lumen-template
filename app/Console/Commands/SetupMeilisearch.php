@@ -47,9 +47,9 @@ class SetupMeilisearch extends Command
         ];
 
         foreach ($classes as $class) {
-            $obj = (new $class);
+            $obj       = (new $class());
             $indexName = $obj->searchableAs();
-            $index =  $client->index($indexName);
+            $index     =  $client->index($indexName);
             try {
                 $index->fetchInfo();
             } catch (ApiException $e) {
