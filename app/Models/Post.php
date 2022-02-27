@@ -17,26 +17,22 @@ class Post extends Model
     protected $fillable = [
         'id',
         'title',
+        'slug',
         'content',
         'category',
         'updated_at',
         'created_at',
     ];
 
-    public function toSearchableArray()
-    {
-        return [
-            ...$this->toArray(),
-        ];
-    }
-
     public $searchable = [
         'title',
+        'slug',
         'content',
     ];
 
     public $filterable = [
         'id',
+        'slug',
         'user_id',
         'deleted_at',
     ];
@@ -45,6 +41,14 @@ class Post extends Model
         'updated_at',
         'created_at',
     ];
+
+    // This array will be cached in the search engine
+    public function toSearchableArray()
+    {
+        return [
+            ...$this->toArray(),
+        ];
+    }
 
     // Relationships
     public function user()

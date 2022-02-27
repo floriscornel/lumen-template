@@ -41,7 +41,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        return !empty($user->department);
+        return true;
     }
 
     /**

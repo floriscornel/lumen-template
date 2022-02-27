@@ -21,9 +21,11 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $title = $this->faker->sentence(4, true);
         return [
             'id'      => $this->faker->uuid(),
-            'title'   => $this->faker->sentence(4, true),
+            'title'   => $title,
+            'slug'    => substr(strtolower(str_replace(' ', '-', $title)), 0, 50),
             'content' => $this->faker->text(300),
         ];
     }
