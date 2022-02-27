@@ -14,11 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (app()->environment('testing')) {
-            $this->app->singleton(\Illuminate\Contracts\Routing\ResponseFactory::class, function () {
-                return new \Laravel\Lumen\Http\ResponseFactory();
-            });
-        }
+        $this->app->singleton(\Illuminate\Contracts\Routing\ResponseFactory::class, function () {
+            return new \Laravel\Lumen\Http\ResponseFactory();
+        });
     }
 
     /**

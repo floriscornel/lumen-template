@@ -22,7 +22,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $this->authorize('view', $post);
-        return response()->json(new PostResource($post), 200);
+        return new PostResource($post);
     }
 
     public function store(Request $request)

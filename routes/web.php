@@ -1,7 +1,5 @@
 <?php declare(strict_types=1);
 
-use App\Models\User;
-
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -15,21 +13,13 @@ use App\Models\User;
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
 $router->group(['prefix' => 'v1'], function () use ($router) {
     // Authenticated routes
     $router->group(['middleware' => 'auth'], function () use ($router) {
-        $router->get('users', function () {
-            return User::search()->get();
-        });
-
-        $router->get('posts', ['as' => 'posts.index', 'uses' => 'PostController@index']);
-        $router->post('posts', ['as' => 'posts.store', 'uses' => 'PostController@store']);
-        $router->get('posts/{id}', ['as' => 'posts.show', 'uses' => 'PostController@show']);
-        $router->put('posts/{id}', ['as' => 'posts.update', 'uses' => 'PostController@update']);
-        $router->delete('posts/{id}', ['as' => 'post.destroy', 'uses' => 'PostController@destroy']);
+        $router->get('posts', ['uses' => 'PostController@index']);
+        $router->post('posts', ['uses' => 'PostController@store']);
+        $router->get('posts/{id}', ['uses' => 'PostController@show']);
+        $router->put('posts/{id}', ['uses' => 'PostController@update']);
+        $router->delete('posts/{id}', ['uses' => 'PostController@destroy']);
     });
 });
