@@ -92,7 +92,7 @@ $app->routeMiddleware([
 
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
-$app->register(App\Providers\EventServiceProvider::class);
+// $app->register(App\Providers\EventServiceProvider::class);
 
 //Setup Laravel Scout
 $app->instance('path.config', app()->basePath() . DIRECTORY_SEPARATOR . 'config');
@@ -102,7 +102,7 @@ $app->register(Laravel\Scout\ScoutServiceProvider::class);
 $app->configure('cache');
 
 if (app()->environment('local')) {
-    $app->register(\Laravel\Tinker\TinkerServiceProvider::class);
+    $app->register(Laravel\Tinker\TinkerServiceProvider::class);
     $app->register(Clockwork\Support\Lumen\ClockworkServiceProvider::class);
 }
 

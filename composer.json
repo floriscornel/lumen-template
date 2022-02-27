@@ -17,6 +17,7 @@
         "itsgoingd/clockwork": "^5.1",
         "laravel/tinker": "^2.7",
         "mockery/mockery": "^1.4.4",
+        "osteel/openapi-httpfoundation-testing": "^0.7.1",
         "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
