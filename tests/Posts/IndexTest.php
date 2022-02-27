@@ -18,6 +18,6 @@ class IndexTest extends OpenApiTestCase
             ->shouldReturnJson()
             ->seeJsonContains(['data' => []])
             ->assertResponseOk();
-        // $this->assertTrue($this->validator->validate($this->response->baseResponse, $route, $method));
+        $this->assertTrue($this->validator->validate($this->response->baseResponse, $route, $method));
     }
 }
