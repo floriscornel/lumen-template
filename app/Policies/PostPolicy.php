@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Template;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TemplatePolicy
+class PostPolicy
 {
     use HandlesAuthorization;
 
@@ -25,12 +25,12 @@ class TemplatePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Template  $template
+     * @param  \App\Models\Post  $post
      * @return mixed
      */
-    public function view(User $user, Template $template)
+    public function view(User $user, Post $post)
     {
-        return $template->user_id == $user->id;
+        return $post->user_id == $user->id;
     }
 
     /**
@@ -48,46 +48,46 @@ class TemplatePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Template  $template
+     * @param  \App\Models\Post  $post
      * @return mixed
      */
-    public function update(User $user, Template $template)
+    public function update(User $user, Post $post)
     {
-        return $template->user_id == $user->id;
+        return $post->user_id == $user->id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Template  $template
+     * @param  \App\Models\Post  $post
      * @return mixed
      */
-    public function delete(User $user, Template $template)
+    public function delete(User $user, Post $post)
     {
-        return $template->user_id == $user->id;
+        return $post->user_id == $user->id;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Template  $template
+     * @param  \App\Models\Post  $post
      * @return mixed
      */
-    public function restore(User $user, Template $template)
+    public function restore(User $user, Post $post)
     {
-        return $template->user_id == $user->id;
+        return $post->user_id == $user->id;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Template  $template
+     * @param  \App\Models\Post  $post
      * @return mixed
      */
-    public function forceDelete(User $user, Template $template)
+    public function forceDelete(User $user, Post $post)
     {
         return false;
     }

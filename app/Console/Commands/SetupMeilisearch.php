@@ -43,13 +43,13 @@ class SetupMeilisearch extends Command
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
 
         $classes = [
-            \App\Models\Template::class,
+            \App\Models\Post::class,
         ];
 
         foreach ($classes as $class) {
-            $obj       = (new $class());
+            $obj = (new $class());
             $indexName = $obj->searchableAs();
-            $index     =  $client->index($indexName);
+            $index = $client->index($indexName);
             try {
                 $index->fetchInfo();
             } catch (ApiException $e) {

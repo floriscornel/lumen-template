@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\PersonalAccessToken;
-use App\Models\Template;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
         $users = User::factory(5)->make();
         foreach ($users as $user) {
             $user->save();
-            $templates = Template::factory()->count(50)->make();
-            foreach ($templates as $template) {
-                $template->user()->associate($user);
-                $template->save();
+            $posts = Post::factory()->count(50)->make();
+            foreach ($posts as $post) {
+                $post->user()->associate($user);
+                $post->save();
             }
 
             $token = new PersonalAccessToken([

@@ -2,21 +2,21 @@
 
 namespace App\Http\Validators;
 
-use App\Models\Template;
+use App\Models\Post;
 
-class TemplateValidator
+class PostValidator
 {
-    public function rules(Template $template): array
+    public function rules(Post $post): array
     {
         return [
             'title' => [
-                $template->exists ? 'sometimes' : null,
+                $post->exists ? 'sometimes' : null,
                 'required',
                 'string',
                 'max:255',
             ],
             'content' => [
-                $template->exists ? 'sometimes' : null,
+                $post->exists ? 'sometimes' : null,
                 'required',
                 'string',
                 'max:255',
@@ -24,8 +24,8 @@ class TemplateValidator
         ];
     }
 
-    public function validate(array $data, Template $template): array
+    public function validate(array $data, Post $post): array
     {
-        return validator($data, $this->rules($template))->validate();
+        return validator($data, $this->rules($post))->validate();
     }
 }

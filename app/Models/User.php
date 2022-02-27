@@ -17,8 +17,8 @@ class User extends Model implements AuthorizableContract
     protected $fillable = ['email'];
 
     // Relationships
-    public function templates()
+    public function posts()
     {
-        return $this->hasMany(Template::class);
+        return $this->hasMany(Post::class);
     }
 }

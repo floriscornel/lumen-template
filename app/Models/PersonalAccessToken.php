@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Models;
 
@@ -21,8 +21,8 @@ class PersonalAccessToken extends Model
      */
     protected $fillable = [
         'id',
-        'token', 
-        'user_id', 
+        'token',
+        'user_id',
         'last_used_at',
         'expires_at',
     ];
@@ -36,7 +36,7 @@ class PersonalAccessToken extends Model
 
     protected $casts = [
         'last_used_at' => 'datetime:Y-m-d',
-        'expires_at' => 'datetime:Y-m-d',
+        'expires_at'   => 'datetime:Y-m-d',
     ];
 
     public function user()
@@ -44,9 +44,10 @@ class PersonalAccessToken extends Model
         return $this->belongsTo(User::class);
     }
 
-    static function lookup(string $tokenID, string $tokenHash): PersonalAccessToken | null {
+    public static function lookup(string $tokenID, string $tokenHash): self | null
+    {
         $token = Cache::remember("token_cache::$tokenID", self::TOKEN_CACHE_DURATION_SECONDS, function () use ($tokenID, $tokenHash) {
-            $token = PersonalAccessToken::with('user')
+            $token = self::with('user')
                 ->where('id', $tokenID)
                 ->first();
             if (!empty($token) && $token->token == $tokenHash) {

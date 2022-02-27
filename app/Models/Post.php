@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
-class Template extends Model
+class Post extends Model
 {
     use HasFactory, Uuids, SoftDeletes, Searchable, HasTimestamps;
 

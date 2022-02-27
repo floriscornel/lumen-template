@@ -30,7 +30,7 @@ return $config
         'binary_operator_spaces'                 => [
             'operators' => [
                 '=>' => 'align',
-                '='  => 'align',
+                // '='  => 'align',
             ],
         ],
         'braces' => [

@@ -26,10 +26,10 @@ $router->group(['prefix' => 'v1'], function () use ($router) {
             return User::search()->get();
         });
 
-        $router->get('templates', ['uses' => 'TemplateController@index']);
-        $router->post('templates', ['uses' => 'TemplateController@store']);
-        $router->get('templates/{id}', ['uses' => 'TemplateController@show']);
-        $router->put('templates/{id}', ['uses' => 'TemplateController@update']);
-        $router->delete('templates/{id}', ['uses' => 'TemplateController@destroy']);
+        $router->get('posts', ['uses' => 'PostController@index']);
+        $router->post('posts', ['uses' => 'PostController@store']);
+        $router->get('posts/{id}', ['uses' => 'PostController@show']);
+        $router->put('posts/{id}', ['uses' => 'PostController@update']);
+        $router->delete('posts/{id}', ['uses' => 'PostController@destroy']);
     });
 });
